@@ -5,9 +5,8 @@ import './App.css';
 import Weather from './components/Weather';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
-const API_KEY = "2fc14697d1bdc3a76fadcf336e1be37a"; // Substitua pela sua chave API real do OpenWeatherMap
+const API_KEY = "2fc14697d1bdc3a76fadcf336e1be37a";
 
-// Componente ThemeSwitcher
 const ThemeSwitcher = () => {
   const [checked, setChecked] = useState(false);
   const handleChange = (nextChecked) => {
@@ -39,7 +38,7 @@ function App() {
   const [suggestions, setSuggestions] = useState([]);
 
   const fetchSuggestions = async (query) => {
-    if (query.length > 2) { // Comece a buscar sugestões após 3 caracteres
+    if (query.length > 2) {
       const url = `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${API_KEY}`;
       try {
         const response = await axios.get(url);
@@ -86,27 +85,29 @@ function App() {
   return (
     <div className='w-full h-full relative'>
       <div className='text-center p-4'>
-        <input 
-          type="text" 
-          className='py-3 px-6 w-full max-w-md md:w-[700px] text-lg rounded-3xl border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none bg-white dark:bg-gray-800 shadow-md input-class-name' 
-          placeholder='Insira sua localização'
-          value={location}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-        />
-        {suggestions.length > 0 && (
-          <ul className='suggestions'>
-            {suggestions.map((suggestion, index) => (
-              <li 
-                key={index} 
-                className='suggestion-item'
-                onClick={() => handleSuggestionClick(suggestion)}
-              >
-                {suggestion.name}, {suggestion.state}, {suggestion.country}
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className="relative">
+          <input 
+            type="text" 
+            className='py-3 px-6 w-full max-w-md md:w-[700px] text-lg rounded-3xl border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none bg-white dark:bg-gray-800 shadow-md input-class-name' 
+            placeholder='Insira sua localização'
+            value={location}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
+          {suggestions.length > 0 && (
+            <ul className='suggestions'>
+              {suggestions.map((suggestion, index) => (
+                <li 
+                  key={index} 
+                  className='suggestion-item'
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion.name}, {suggestion.state}, {suggestion.country}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         <ThemeSwitcher />
       </div>
       <Weather weatherData={data}/>

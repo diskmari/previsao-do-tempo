@@ -50,3 +50,43 @@ body {
 .suggestion-item:hover {
   background-color: #555555;
 }
+
+/* App.css */
+
+.input-class-name {
+  position: relative; /* Garantir que as sugestões sejam posicionadas corretamente */
+}
+
+.suggestions {
+  max-height: 200px; /* Limite a altura das sugestões para evitar excesso de rolagem */
+  overflow-y: auto; /* Adiciona rolagem se necessário */
+  background-color: #fff; /* Cor de fundo das sugestões */
+  border: 1px solid #ddd; /* Borda das sugestões */
+  border-radius: 0 0 1rem 1rem; /* Cantos arredondados para as sugestões */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para as sugestões */
+  position: absolute; /* Posiciona as sugestões abaixo da caixa de texto */
+  top: 100%; /* Coloca as sugestões logo abaixo do campo de entrada */
+  left: 0; /* Alinha as sugestões com o início da caixa de texto */
+  width: 100%; /* Faz com que as sugestões tenham a mesma largura que o campo de entrada */
+  z-index: 10; /* Garante que as sugestões apareçam acima de outros elementos */
+}
+
+.suggestion-item {
+  padding: 8px 12px; /* Espaçamento interno das sugestões */
+  cursor: pointer; /* Muda o cursor para indicar que a sugestão é clicável */
+  transition: background-color 0.2s; /* Transição suave para a cor de fundo */
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+}
+
+/* Ajuste para telas maiores */
+@media (min-width: 768px) {
+  .suggestions {
+    max-width: 700px; /* Largura máxima para telas maiores */
+    margin: 0 auto; /* Centraliza a lista de sugestões */
+    left: 50%; /* Centraliza a lista de sugestões horizontalmente */
+    transform: translateX(-50%); /* Ajusta a posição para garantir centralização */
+  }
+}
